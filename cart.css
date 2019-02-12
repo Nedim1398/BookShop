@@ -1,3 +1,11 @@
+.navbar-brand{
+	padding: 3px;
+	border: 3px solid #16a1b7;
+	border-radius: 10px;
+}
+.container{
+	padding-top: 10px;
+}
 .products{
 	border: 1px solid #333;
 	background-color: #f1f1f1;
