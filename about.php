@@ -10,13 +10,13 @@
 			$email = (string)$email;
 			$psw = $_POST['psw'];
 			$psw = (string)$psw;
-			$query = "SELECT TOP 1 * FROM users WHERE email='$email' AND password='$psw'";
+			$query = "SELECT * FROM users WHERE email='$email' AND password='$psw'";
 		$result = mysqli_query($connect,$query);
 		if($result === FALSE) { 
 		//TODO: LOGIN FAILED POPUP WINDOW
 		}
 		else{
-		header("Location: http://localhost/shop/homeLog.php");
+		header("Location: http://localhost/shop/aboutLog.php");
 		exit;
 		}
     }
@@ -30,7 +30,7 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="http://localhost/shop/about.php">Bookworm Adventures</a>
+  <a class="navbar-brand" href="http://localhost/shop/about.php">Bookworm Adventures<span class="sr-only">(current)</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -38,7 +38,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link active" href="http://localhost/shop/home.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://localhost/shop/home.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="http://localhost/shop/cart.php">Checkout</a>
@@ -97,7 +97,19 @@
     </div>
   </form>
 </div>
-
+<div class="about">
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus magna ac risus blandit placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent eget leo ut ante porttitor interdum non at dolor. Morbi sit amet lectus in ex ullamcorper lobortis eget sit amet nisl. In vitae felis dictum, pretium lorem at, ultricies arcu. Nullam in malesuada diam. Praesent quis magna a elit ultricies rutrum. Phasellus in malesuada justo. Morbi in vestibulum orci.
+</p><p>
+Nunc id orci ac odio ultrices facilisis. Curabitur elit eros, elementum id erat vel, placerat auctor tortor. Pellentesque consectetur neque at dictum faucibus. Curabitur vitae sem ultrices, semper magna ut, pellentesque velit. Sed eget placerat lacus, sit amet elementum quam. Curabitur nec magna malesuada, semper diam in, bibendum ex. Sed sodales lectus mi, non cursus ex semper nec. Fusce eleifend pharetra nibh eget rhoncus. Aenean non metus in quam porttitor ultrices sed eu mi.
+</p><p>
+Mauris fringilla mauris rhoncus diam commodo, semper semper velit tincidunt. Suspendisse et massa augue. Integer enim nibh, iaculis id varius quis, tristique vitae ex. Morbi euismod libero non aliquet ullamcorper. Curabitur lacus turpis, tincidunt ut justo vel, aliquam vehicula erat. Nam porttitor consectetur sem, vel viverra dolor aliquet sit amet. Cras aliquet sed nunc in consectetur. Duis eget ex ac sem dapibus iaculis. Donec lacinia, tellus ac lacinia facilisis, nisl diam sagittis ex, quis dapibus enim ligula id mauris.
+</p><p>
+Vivamus suscipit ac lacus at tristique. Aenean sit amet efficitur tortor, id faucibus risus. Nullam sagittis eget dui vel hendrerit. Sed dictum odio quam, ut congue diam varius quis. Nullam quis quam lobortis, aliquam nisi in, dictum quam. Mauris euismod tellus sed ullamcorper vestibulum. Praesent eu commodo tellus. Fusce condimentum nibh mi, et congue tellus convallis pellentesque. Curabitur at molestie erat. Curabitur purus odio, feugiat vel condimentum ac, fermentum tempor felis. Praesent et leo vulputate quam convallis maximus.
+</p><p>
+Nulla sodales tincidunt auctor. Nunc non mi diam. Fusce turpis nulla, pellentesque quis hendrerit id, porta eu quam. Nullam non volutpat nibh. Donec rutrum elit quis magna porttitor, a rutrum ligula cursus. Sed ante metus, pulvinar in ultricies at, dignissim id nulla. Sed in ipsum dapibus, semper tortor quis, vehicula quam. In vehicula purus arcu, vitae pretium nibh fermentum at. Aenean mollis lacinia lacinia. Mauris faucibus fringilla enim quis volutpat. 
+</p>
+</div>
 <?php
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['register']))
     {
@@ -116,6 +128,7 @@
 		mysqli_query($connect,$query);
     }
 ?>
+
 
   <script>
 // Get the modal
@@ -138,6 +151,7 @@ window.onclick = function(event) {
   }
 }
 </script>
+</nav>
 <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
 <script src="cart.js"></script> 
 	</body>
