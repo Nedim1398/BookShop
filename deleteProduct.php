@@ -16,9 +16,5 @@
 		$connect = mysqli_connect('localhost','root','','cart');
 		$query = "DELETE FROM products WHERE name='$name'";
 		mysqli_query($connect,$query);
-
-		// TODO: ADD DELETING PICTURE FROM FOLDER
-?>
-<?php
-
+		header("Location: http://localhost/shop/cartLog.php");
 ?>

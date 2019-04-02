@@ -41,15 +41,5 @@ if ($uploadOk == 0) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
-
-		$connect = mysqli_connect('localhost','root','','cart');
-			$name = $_POST['name'];
-			$name = (string)$name;
-			$image = $_FILES["fileToUpload"]["name"];
-			$price = $_POST['price'];
-			$price = (float)$price;
-			$query = "INSERT INTO products (name,image,price) VALUES('$name','$image','$price')";
-		mysqli_query($connect,$query);
-		
-		header("Location: http://localhost/shop/homeLog.php");
+	header("Location: http://localhost/shop/cartLog.php");
 ?>

@@ -66,60 +66,57 @@ function pre_r($array){
 
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<title>Shopping Cart</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 		<link rel="stylesheet" href="cart.css"/>
 	</head>
+	
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="http://localhost/shop/aboutLog.php">Bookworm Adventures</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+			<a class="navbar-brand" href="http://localhost/shop/aboutLOG.php">Bookworm Adventures</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="http://localhost/shop/homeLog.php">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="http://localhost/shop/cartLog.php">Checkout<span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0" name="form" method="post">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search" name="search" id="search">
-	  <button class="btn btn-info" type="submit">Search</button>
-	</form>
-	<a href="http://localhost/shop/cart.php"><button class="btn btn-info" style="margin-left:5px" onclick="func2()">Logout</button></a>
-	<button class="btn btn-info" style="margin-left:5px" onclick="document.getElementById('id01').style.display='block'">Register</button>
-  </div>
-	</nav>
-  <div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="" method="post">
-    <div class="containerReg">
-      <h1>Sign Up</h1>
-      <p>Please logout before creating a new account.</p>
-      <hr>
-      <div class="clearfix">
-        <button type="submit" onclick="document.getElementById('id01').style.display='none'" class="btn btn-dark btn-block">Cancel</button>
-      </div>
-    </div>
-  </form>
-</div>
-
-  <script>
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="http://localhost/shop/homeLOG.php">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="http://localhost/shop/cartLOG.php">Checkout<span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+	
+				<form class="form-inline my-2 my-lg-0" name="form" method="post">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search" name="search" id="search">
+					<button class="btn btn-info" type="submit">Search</button>
+				</form>
+	
+				<a href="http://localhost/shop/cart.php"><button class="btn btn-info" style="margin-left:5px" onclick="func2()">Logout - <?php echo $_SESSION["activeUser"];?></button></a>
+				<button class="btn btn-info" style="margin-left:5px" onclick="document.getElementById('id01').style.display='block'">Register</button>
+			</div>
+		</nav>
+		
+		
+		<div id="id01" class="modal">
+			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+			<form class="modal-content" action="" method="post">
+			
+				<div class="containerReg">
+					<h1>Sign Up</h1>
+					<p>Please logout before creating a new account.</p>
+					<hr>
+					
+					<div class="clearfix">
+						<button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-dark btn-block">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		
 
 		<div class="container" id="div">
 		<?php 
@@ -136,18 +133,22 @@ window.onclick = function(event) {
 				while($product = mysqli_fetch_assoc($result)):
 				?>
 				<div class="col-md-3 col-sm-6" style="float:left;">
-					<form method="post" action="cart.php?action=add&id=<?php echo $product['id']; ?>">
+					<form method="post" action="cartLog.php?action=add&id=<?php echo $product['id']; ?>" enctype="multipart/form-data">
 						<div class="products">
 							<img class="img-fluid" src="<?php echo $product['image']; ?>"/>
-							<h4 class="text-info"><?php echo $product['name']; ?></h4>
-							<h4>$ <?php echo $product['price']; ?></h4>
+							<label><b>Select image to replace:</b>
+							<input type="file" name="fileToUpload" id="fileToUpload"></label>
+							<input type="text" name="name" value="<?php echo $product['name']; ?>" />
+							<input type="text" name="price" value="<?php echo $product['price']; ?>" />
 							<input type="text" name="quantity" class="form-control" value="1" />
-							<input type="hidden" name="name" value="<?php echo $product['name']; ?>" />
-							<input type="hidden" name="price" value="<?php echo $product['price']; ?>" />
+							<input type="hidden" name="nameH" value="<?php echo $product['name']; ?>" />
+							<input type="hidden" name="priceH" value="<?php echo $product['price']; ?>" />
 							<input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-info"
 								   value="Add to Cart" />
 							<input type="submit" formaction="deleteProduct.php" style="margin-top:5px;" class="btn btn-danger"
 								   value="Delete Product" />
+							<input type="submit" formaction="editProduct.php" style="margin-top:5px;" class="btn btn-success"
+								   value="Edit Product" />
 						</div>
 					</form>
 				</div>
@@ -214,7 +215,19 @@ window.onclick = function(event) {
 		</div>			
 		</div>
 		
-<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
-<script src="cart.js"></script> 
+		<script>
+		// Get the modal
+		var modal = document.getElementById('id01');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+		</script>
+		
+		<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+		<script src="cart.js"></script> 
 	</body>
 </html>
