@@ -1,21 +1,25 @@
 <?php
+	//Get new values
 	$name = $_POST['name'];
 	$name = (string)$name;
 	$price = $_POST['price'];
 	$price = (float)$price;
 	
+	//Get old values
 	$nameH = $_POST['nameH'];
 	$nameH = (string)$nameH;
 	$priceH = $_POST['priceH'];
 	$priceH = (float)$priceH;
 	$imgUploaded = basename($_FILES["fileToUpload"]["name"]);
 	
+	//Check if an image was added
   		if(!(empty($imgUploaded))){
 			$connect2 = mysqli_connect('localhost','root','','cart');
 			$query2 = "SELECT image FROM products WHERE name='$nameH'";
 			$result = mysqli_query($connect2,$query2);
 			$row = mysqli_fetch_array($result);
 			
+			//Deletes current image and reuploads new one
 			$image = $row['image'];
 			echo $image;
 			$path='C:/xampp/htdocs/shop/';

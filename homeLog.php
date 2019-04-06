@@ -12,6 +12,7 @@ session_start();
 	</head>
 
 	<body>
+	<!-- Navigation Bar -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="http://localhost/shop/aboutLOG.php">Bookworm Adventures</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +39,7 @@ session_start();
 			</div>
 		</nav>
 		
-		
+		<!-- Sign Up -->
 		<div id="id01" class="modal">
 			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 			<form class="modal-content" action="" method="post">
@@ -55,7 +56,7 @@ session_start();
 			</form>
 		</div>
 
-		
+		<!-- New Product Form -->
 		<div>
 			<form class="modal-content" action="upload.php" method="post" enctype="multipart/form-data">
 				<div class="containerReg">
@@ -78,6 +79,7 @@ session_start();
 			</form>
 		</div>
 		
+		<!-- Fetch all users for editing -->
 <?php	
 		$connect = mysqli_connect('localhost','root','','cart');
 		$query = "SELECT * FROM users";
