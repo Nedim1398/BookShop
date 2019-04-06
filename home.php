@@ -1,3 +1,4 @@
+<!-- Check if user exists before Login -->
 <?php
 session_start();
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['login']))
@@ -33,6 +34,7 @@ session_start();
 	</head>
 	
 	<body>
+	<!-- Navigation Bar -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="http://localhost/shop/about.php">Bookworm Adventures</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,6 +59,7 @@ session_start();
 			</div>
 		</nav>
 		
+		<!-- Sign Up -->
 		<div id="id01" class="modal">
 			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 			<form class="modal-content" action="" method="post">
@@ -83,6 +86,7 @@ session_start();
 			</form>
 		</div>
 
+		<!-- Login -->
 		<div id="id02" class="modal">
 			<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 			<form class="modal-content" action="" method="post">
@@ -103,6 +107,7 @@ session_start();
 			</form>
 		</div>
 
+		<!-- Register New User -->
 		<?php
 			if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['register']))
 			{

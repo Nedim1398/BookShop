@@ -74,6 +74,7 @@ function pre_r($array){
 	</head>
 	
 	<body>
+	<!-- Navigation Bar -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="http://localhost/shop/aboutLOG.php">Bookworm Adventures</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +101,7 @@ function pre_r($array){
 			</div>
 		</nav>
 		
-		
+		<!-- Logout -->
 		<div id="id01" class="modal">
 			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 			<form class="modal-content" action="" method="post">
@@ -117,7 +118,7 @@ function pre_r($array){
 			</form>
 		</div>
 		
-
+		<!-- Fetch all products for editing -->
 		<div class="container" id="div">
 		<?php 
 		$connect = mysqli_connect('localhost','root','','cart');
@@ -157,62 +158,72 @@ function pre_r($array){
 			endif;
 		endif;
 		?>
-		<div style="clear:both"></div>
-		<br />
-		<div class="table-responsive">
-		<table class="table">
-			<tr><th colspan="5"><h3>Order Details</h3></th></tr>
-		<tr>
-			<th width="40%">Product Name</th>
-			<th width="10%">Quantity</th>
-			<th width="20%">Price</th>
-			<th width="15%">Total</th>
-			<th width="5%">Action</th>
-		</tr>
-		<?php
-		if(!empty($_SESSION['shopping_cart'])):
-		
-				$total = 0;
+		<!-- Cart table formatting -->
+			<div style="clear:both"></div>
+			<br />
+			<div class="table-responsive">
+				<table class="table">
+					<tr><th colspan="5"><h3>Order Details</h3></th></tr>
+					<tr>
+						<th width="40%">Product Name</th>
+						<th width="10%">Quantity</th>
+						<th width="20%">Price</th>
+						<th width="15%">Total</th>
+						<th width="5%">Action</th>
+					</tr>
 				
-				foreach($_SESSION['shopping_cart'] as $key => $product):
-		?>
-		<tr>
-			<td><?php echo $product['name']; ?></td>
-			<td><?php echo $product['quantity']; ?></td>
-			<td>$ <?php echo $product['price']; ?></td>
-			<td>$ <?php echo number_format($product['quantity'] * $product['price'], 2); ?></td>
-			<td>
-				<a href="cart.php?action=delete&id=<?php echo $product['id']; ?>";
-					<div class="btn-danger">Remove</div>
-				</a>
-			</td>
-		</td>
+					<?php
+					if(!empty($_SESSION['shopping_cart'])):
 		
-		<?php
-				$total = $total + ($product['quantity'] * $product['price']);
-				endforeach;
-		?>
-		<tr>
-			<td colspan="3" align="right">Total</td>
-			<td align="right">$ <?php echo number_format($total, 2); ?></td>
-			<td></td>
-		</tr>
-		<tr>
-			<!-- Show checkout button only if the shopping cart is not empty -->
-			<td colspan="5">
-			<?php
-				if (isset($_SESSION['shopping_cart'])):
-				if (count($_SESSION['shopping_cart']) > 0):
-			?>
-				<a href="#" class="button">Checkout</a>
-			<?php endif; endif; ?>
-			</td>
-		</tr>
-		<?php
-		endif;
-		?>
-		</table>
-		</div>			
+					$total = 0;
+				
+					foreach($_SESSION['shopping_cart'] as $key => $product):
+					?>
+				
+					<tr>
+						<td><?php echo $product['name']; ?></td>
+						<td><?php echo $product['quantity']; ?></td>
+						<td>$ <?php echo $product['price']; ?></td>
+						<td>$ <?php echo number_format($product['quantity'] * $product['price'], 2); ?></td>
+						<td>
+							<a href="cartLog.php?action=delete&id=<?php echo $product['id']; ?>";
+								<div class="btn-danger">Remove</div>
+							</a>
+						</td>
+					</tr>
+		
+					<?php
+					$total = $total + ($product['quantity'] * $product['price']);
+					endforeach;
+					?>
+				
+					<tr>
+						<td colspan="3" align="right">Total</td>
+						<td align="right">$ <?php echo number_format($total, 2); ?></td>
+						<td></td>
+					</tr>
+					<tr>
+					<!-- Show checkout button only if the shopping cart is not empty -->
+						<td colspan="5">
+				
+							<?php
+							if (isset($_SESSION['shopping_cart'])):
+							if (count($_SESSION['shopping_cart']) > 0):
+							?>
+			
+							<a href="#" class="button">Checkout</a>
+				
+							<?php endif; endif; ?>
+			
+						</td>
+					</tr>
+			
+					<?php
+					endif;
+					?>
+		
+				</table>
+			</div>			
 		</div>
 		
 		<script>
